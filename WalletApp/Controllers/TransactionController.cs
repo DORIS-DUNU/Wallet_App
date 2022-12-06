@@ -20,6 +20,17 @@ namespace WalletApp.Controllers
             _logger = logger;
             _transactionService = transactionService;
         }
+
+        [HttpGet("/convert")]
+        public async Task<IActionResult> ConvertCurrency(string currencyToConvert, double amount)
+        {
+            var result = await _transactionService.GetRateAsync(currencyToConvert, amount);
+            if (result != null) return Ok(result);
+
+            _logger.LogInformation("Unable to Convert");
+            return BadRequest();
+
+        }
     }
 
 }
