@@ -18,6 +18,18 @@ namespace WalletApp.Controllers
             _userService = userService;
         }
 
+         [HttpPost("Register")]
+        public async Task<IActionResult> Register(UserDTO user)
+        {
+
+            var register = await _userService.Register(user);
+
+            if (register != null)
+                return Ok(register);
+
+            _logger.LogInformation("Registration failed!");
+            return BadRequest();    
+        }
        
 
         [HttpPost("Login")]
