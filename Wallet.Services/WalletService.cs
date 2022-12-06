@@ -26,6 +26,13 @@ namespace WalletApp.Services
             _transactionService = transactionService;
         }
         
+        public async Task<string> CreateWalletAsync()
+        {
+            var address = await _walletRepository.CreateWalletAsync();
+            return address;
+        }
+
+        
 
     }
 }
