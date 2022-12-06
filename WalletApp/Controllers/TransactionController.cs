@@ -54,6 +54,17 @@ namespace WalletApp.Controllers
             _logger.LogInformation("Could not get all user transaction");
             return NotFound();
         }
+
+        [HttpPost("/statement")]
+        public async Task<IActionResult> GetWalletStatement(string Address, int page)
+        {
+            var result = await _transactionService.GetWalletStatementAsync(Address, page);
+            if (result != null)
+                return Ok(result);
+
+            _logger.LogInformation("Could not get all wallet statement");
+            return NotFound();
+        }
     }
 
 }
