@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WalletApp.Models.DTO
 {
-    public class LoginModel
+    public class TransferDto
     {
-        [Required(ErrorMessage = "User Name is required")]
-        public string Username { get; set; }
+        public string SenderAddress { get; set; }
+        public string RecieverAddress { get; set; }
+        public double Amount { get; set; }
 
-        //[Required(ErrorMessage = "Password is required")]
-        public string Password { get; set; }
     }
 }
