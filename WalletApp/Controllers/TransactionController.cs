@@ -31,6 +31,17 @@ namespace WalletApp.Controllers
             return BadRequest();
 
         }
+
+        [HttpGet("/conversion")]
+        public async Task<IActionResult> CurrencyToCurrency(string currencyA, string currencyB, double amount)
+        {
+            var result = await _transactionService.ConvertCurrencyAsync(currencyA, currencyB, amount);
+            if (result != null) return Ok(result);
+
+            _logger.LogInformation("Unable to convert");
+            return BadRequest();
+
+        }
     }
 
 }
