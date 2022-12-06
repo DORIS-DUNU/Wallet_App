@@ -42,6 +42,18 @@ namespace WalletApp.Controllers
             return BadRequest();
 
         }
+
+        [HttpPost("/transactions")]
+        public async Task<IActionResult> GetAllUserTransactions()
+        {
+
+            var result = await _transactionService.GetAllUserTransactionsAsync();
+            if (result != null)
+                return Ok(result);
+
+            _logger.LogInformation("Could not get all user transaction");
+            return NotFound();
+        }
     }
 
 }
