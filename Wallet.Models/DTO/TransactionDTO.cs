@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WalletApp.Models.DTO
 {
-    public class TransferDto
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum Type
     {
-        public string SenderAddress { get; set; }
-        public string RecieverAddress { get; set; }
+        Debit, Credit
+    }
+    public class TransactionDTO
+    {
+        public int Id { get; set; }
+        public Type Type { get; set; }
+        public int WalletId { get; set; }
         public double Amount { get; set; }
-
+        public double Balance { get; set; }
     }
 }
