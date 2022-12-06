@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-﻿
+
 =======
 ﻿using System;
 using System.Collections.Generic;
@@ -20,8 +20,19 @@ namespace WalletApp.Services
         private readonly IWalletRepository _walletRepository;
         private readonly ITransactionService _transactionService;
 
-      
+        public WalletService(IWalletRepository walletRepository, ITransactionService transactionService)
+        {
+            _walletRepository = walletRepository;
+            _transactionService = transactionService;
+        }
+        
+        public async Task<string> CreateWalletAsync()
+        {
+            var address = await _walletRepository.CreateWalletAsync();
+            return address;
+        }
+
+        
 
     }
 }
->>>>>>> 5bc2ccae4857e0d69bedd97b11f83d67cdd49c42
