@@ -39,6 +39,21 @@ namespace WalletApp.Services
             return deposited;   
         }
 
+        public async Task<bool> WithdrawAsync(DepositDto withdraw)
+        {
+            if (withdraw.Amount < 1) return false;
+            var withdrawn = await _walletRepository.WithdrawAsync(withdraw);
+            return withdrawn;
+        }
+
+        public async Task<bool> TransferAsync(TransferDto transfer)
+        {
+            if (transfer.Amount < 1) return false;
+            var transferred = await _walletRepository.TransferAsync(transfer);
+            return transferred;
+        }
+
+
         
 
     }
