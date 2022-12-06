@@ -32,6 +32,13 @@ namespace WalletApp.Services
             return address;
         }
 
+        public async Task<bool> DepositAsync(DepositDto deposit)
+        {
+            if(deposit.Amount < 1) return false;
+            var deposited = await _walletRepository.DepositAsync(deposit);
+            return deposited;   
+        }
+
         
 
     }
