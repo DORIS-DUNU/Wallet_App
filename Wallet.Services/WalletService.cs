@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+﻿
+=======
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,3 +24,4 @@ namespace WalletApp.Services
 
     }
 }
+>>>>>>> 5bc2ccae4857e0d69bedd97b11f83d67cdd49c42
