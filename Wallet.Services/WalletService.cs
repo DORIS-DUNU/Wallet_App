@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +49,42 @@ namespace WalletApp.Services
             var transferred = await _walletRepository.TransferAsync(transfer);
             return transferred;
         }
+
+        public async Task<double?> GetBalanceAsync(string walletAddress, string currencyCode)
+        {
+           var result = await _walletRepository.GetBalanceAsync(walletAddress);
+            if (result != null)
+            {
+               var convertedResult = await _transactionService.GetRateAsync(currencyCode, result);
+                return convertedResult;
+            }
+          
+        return null;
+
+        }
+
+        public async Task<IEnumerable<WalletDTO>> GetListOfWallets()
+        {
+            try
+            {
+                var result = await _walletRepository.GetListOfWallets();
+                var allWallets = new List<WalletDTO>();
+                foreach (var wallet in result)
+                {
+                    allWallets.Add(WalletAppMapper.WalletToDTO(wallet));
+
+                }
+
+                return allWallets;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+          
+        }
+
 
 
         
